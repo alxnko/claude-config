@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Re-export portable settings and refuse any commit that carries a secret.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+python3 scripts/export-settings.py >/dev/null
+git add settings.portable.json skills-manifest.txt
+if command -v gitleaks >/dev/null; then
+  gitleaks git --pre-commit --staged --no-banner . || { echo "gitleaks found a secret; commit refused" >&2; exit 1; }
+else
+  echo "warning: gitleaks not installed; secret scan skipped" >&2
+fi

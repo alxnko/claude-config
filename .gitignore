@@ -1,0 +1,21 @@
+# ALLOWLIST: ignore everything in ~/.claude by default and name only what is
+# portable. Claude Code keeps adding runtime folders here (caches, transcripts,
+# plugin downloads, sessions, backups, memory); an allowlist keeps every one of
+# them out automatically. Never allowlist: settings.json (holds tokens),
+# .credentials.json, .claude.json, projects/ (transcripts + memory), history*.
+/*
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/RTK.md
+!/apply-model-ceiling.py
+!/settings.portable.json
+!/skills-manifest.txt
+!/agents/
+!/hooks/
+!/scripts/
+!/skills/
+# only your own skills; symlinked/third-party ones are listed in skills-manifest.txt
+/skills/*
+!/skills/shipping-to-merge/
+!/skills/graphify/

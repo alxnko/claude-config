@@ -1,0 +1,410 @@
+{
+  "cleanupPeriodDays": 36500,
+  "env": {
+    "ENABLE_TOOL_SEARCH": "auto",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+  },
+  "availableModels": [
+    "opus",
+    "sonnet",
+    "haiku"
+  ],
+  "enforceAvailableModels": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/prune-scratchpads.sh",
+            "timeout": 30,
+            "statusMessage": "Pruning stale scratchpads..."
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/caveman' shrink-hook"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "TaskCreated": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "ConfigChange": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "CwdChanged": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "claude-mem@thedotmack": true
+  },
+  "extraKnownMarketplaces": {
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "theme": "dark",
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(terraform apply:*) in aits-infra/environments/prod",
+      "Bash(gcloud run deploy:*) targeting aits-system-iw4y2syhbq-uc.a.run.app"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: Google Cloud (gcloud used 18\u00d7 in-project; host aits-system-iw4y2syhbq-uc.a.run.app is a Cloud Run URL)",
+      "**Repository visibility**: assume private unless the remote host and repo name indicate otherwise, or a visibility check in the transcript shows public \u2014 not queryable here (no remotes on this repo) and repo has 0 tracked files",
+      "**Internal sharing / snippet hosting**: None configured \u2014 treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: unknown \u2014 origin/HEAD unset, no remotes configured, not queryable via gh",
+      "**CI/CD deploy targets**: Google Cloud Run (aits-system-iw4y2syhbq-uc.a.run.app), gcloud-based deploys referenced under aits-infra/environments/prod",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo and its remote(s) only (no additional orgs configured) \u2014 as scoped by the Trusted repo and Repository visibility entries above; note this repo currently has no remotes configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: aits-system-iw4y2syhbq-uc.a.run.app (Cloud Run service contacted 3\u00d7 in-project transcripts)",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: aits-infra/environments/prod/terraform.tfstate, terraform.tfstate.backup, terraform.tfvars, terraform.tfvars.example (Terraform state and vars can contain secrets/infra details); aits-system/.env.example; aits-system/tests/services/test_secret_admin.py; aits-python/retention.toml \u2014 preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: aits-python/cloudbuild-retention.yaml, aits-python/cloudbuild/retention.py, aits-python/cloudbuild/test_retention.py, aits-infra/environments/prod/retention.tf suggest a retention/declassification pipeline exists \u2014 specifics not gathered, treat as sensitive process until confirmed",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited \u2014 e.g. matches `prod-db`, not `producer`); this repo's own aits-infra/environments/prod/ tree matches this pattern",
+      "**Protected deployment namespaces / environments**: aits-infra/environments/prod/ (Terraform env named `prod`; also tf-prod.sh / tf-prod.ps1 scripts target it explicitly)",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment \u2014 includes aits-infra/environments/prod/*.tf and aits-infra/modules/registry_reader_iam/*",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: The git repository the agent started in ($HOME/Projects/code/aits-libs), its working directory \u2014 note it currently has 0 tracked files and no remotes configured",
+      "**Org-specific CLIs**: rtk (seen 4\u00d7 in-project transcripts, 1\u00d7 in shell history; also referenced via ~/.claude/CLAUDE.md's @RTK.md import)",
+      "routine under aits-infra/environments/prod/ prefix: treated as protected, not routine, per Sensitive remote targets / Protected deployment namespaces above"
+    ]
+  },
+  "model": "opus",
+  "effortLevel": "medium"
+}

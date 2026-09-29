@@ -1,0 +1,27 @@
+# Third-party skills installed as symlinks on the source machine (not committed).
+# Reinstall them from their own sources on a new device.
+babysit -> $HOME/.gemini/config/skills/babysit
+cavecrew -> ../../.agents/skills/cavecrew
+caveman -> ../../.agents/skills/caveman
+caveman-commit -> ../../.agents/skills/caveman-commit
+caveman-compress -> ../../.agents/skills/caveman-compress
+caveman-discover -> ../../.agents/skills/caveman-discover
+caveman-evidence-review -> ../../.agents/skills/caveman-evidence-review
+caveman-explore -> ../../.agents/skills/caveman-explore
+caveman-help -> ../../.agents/skills/caveman-help
+caveman-learn -> ../../.agents/skills/caveman-learn
+caveman-manage -> ../../.agents/skills/caveman-manage
+caveman-optimize -> ../../.agents/skills/caveman-optimize
+caveman-review -> ../../.agents/skills/caveman-review
+caveman-setup -> ../../.agents/skills/caveman-setup
+caveman-stats -> ../../.agents/skills/caveman-stats
+find-skills -> ../../.agents/skills/find-skills
+investigate-first -> ../../.agents/skills/investigate-first
+lean-build -> ../../.agents/skills/lean-build
+migration -> ../../.agents/skills/migration
+remotion-best-practices -> ../../.agents/skills/remotion-best-practices
+remotion-create -> ../../.agents/skills/remotion-create
+remotion-render -> ../../.agents/skills/remotion-render
+safe-refactor -> ../../.agents/skills/safe-refactor
+surgical-patch -> ../../.agents/skills/surgical-patch
+verify-and-stop -> ../../.agents/skills/verify-and-stop
