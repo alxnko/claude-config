@@ -1,6 +1,6 @@
 ---
 name: sonnet-reviewer
-description: Read-only code reviewer (Sonnet 5.5, medium effort) for ROUTINE changes — docs/ledger records, tests, mechanical refactors, dependency bumps, well-scoped features with no security, data-lifecycle, permission, migration-safety or project-declared high-risk impact. For anything touching those — or when the risk is UNCLEAR — use opus-reviewer.
+description: Read-only code reviewer (Sonnet 5.5, medium effort) for ROUTINE changes — docs/ledger records, tests, mechanical refactors, dependency bumps, well-scoped features with no security, data-lifecycle, permission, migration-safety or project-declared high-risk impact, and provably behavior-neutral edits inside high-risk files (typo, comment, a rename the gate fully covers). For any BEHAVIOR change in those areas — or when the risk is UNCLEAR — use opus-reviewer.
 model: sonnet
 effort: medium
 tools: Read, Grep, Glob, Bash

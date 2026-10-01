@@ -1,6 +1,6 @@
 ---
 name: opus-reviewer
-description: Read-only code reviewer (Opus 5.5, medium effort) for HIGH-RISK changes — security, auth/RBAC, tenant isolation/RLS, audit logs, crypto/trust material, data retention/erasure/PII, database migrations, cross-cutting refactors, the project's own declared high-risk domains, any change governed by a spec/ADR invariant, and ANY change whose risk classification is unclear. Also the final review before merging product code a sonnet-worker built in those areas.
+description: Read-only code reviewer (Opus 5.5, medium effort) for HIGH-RISK BEHAVIOR changes (chosen by the change's consequence, not its path) — security, auth/RBAC, tenant isolation/RLS, audit logs, crypto/trust material, data retention/erasure/PII, database migrations, cross-cutting refactors, the project's own declared high-risk domains, any change governed by a spec/ADR invariant, and ANY change whose risk classification is unclear. Also the final review before merging product code a sonnet-worker built in those areas.
 model: opus
 effort: medium
 tools: Read, Grep, Glob, Bash
