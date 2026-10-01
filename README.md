@@ -16,6 +16,7 @@ never be committed.
 | `settings.portable.json` | `settings.json` with secrets and machine-local values removed (`$HOME` for paths) |
 | `skills-manifest.txt` | Third-party skills that were symlinks, so not committed; reinstall from their sources |
 | `hooks/prune-scratchpads.sh` | SessionStart hook |
+| `scripts/subagent-usage.py` | Subagent dispatches by type and token/context usage by model, from transcripts — measures the routing policy |
 | `apply-model-ceiling.py` | Enforces the model policy (no Fable; Opus orchestrator, Sonnet default worker, medium effort) |
 | `scripts/` | `export-settings.py`, `install-settings.py`, `pre-commit` |
 
