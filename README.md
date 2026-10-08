@@ -59,7 +59,7 @@ into a folder that doesn't exist yet, then install Claude Code, run
 `python3 ~/.claude/scripts/install-settings.py`, and log in. Claude Code adds its
 own files next to the repo's, and the allowlist keeps them untracked.
 
-**Optional tools the hooks call:** `rtk`, `caveman`, `attempt-hook`. Without them,
+**Optional tools the hooks call:** `rtk`, `caveman`. Without them,
 `install-settings.py` leaves those hooks out and lists them. Install the tools
 and re-run it to enable them.
 

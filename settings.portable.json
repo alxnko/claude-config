@@ -29,15 +29,6 @@
             "statusMessage": "Pruning stale scratchpads..."
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "UserPromptSubmit": [
@@ -46,15 +37,6 @@
           {
             "type": "command",
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
           }
         ]
       }
@@ -84,15 +66,6 @@
             "command": "rtk hook claude"
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "PostToolUse": [
@@ -101,15 +74,6 @@
           {
             "type": "command",
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
           }
         ]
       }
@@ -122,15 +86,6 @@
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "PreCompact": [
@@ -139,15 +94,6 @@
           {
             "type": "command",
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
           }
         ]
       }
@@ -160,15 +106,6 @@
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "SubagentStart": [
@@ -177,15 +114,6 @@
           {
             "type": "command",
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
           }
         ]
       }
@@ -198,15 +126,6 @@
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "Stop": [
@@ -217,15 +136,6 @@
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "SessionEnd": [
@@ -234,103 +144,6 @@
           {
             "type": "command",
             "command": "'$HOME/.caveman/bin/caveman-proxy' native-hook claude --adapter '$HOME/.local/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js'"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "PermissionDenied": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "StopFailure": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "TaskCreated": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "TaskCompleted": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "ConfigChange": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "CwdChanged": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "'$HOME/.local/bin/attempt-hook' claude-code",
-            "timeout": 5
           }
         ]
       }

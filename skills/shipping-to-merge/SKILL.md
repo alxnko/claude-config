@@ -68,7 +68,7 @@ Green CI + passing tests is **not** review — every bug this gate has caught sh
 
 **A finding is a claim, not proof.** Verify each one yourself against the committed file before acting — reviewers cite stale mid-edit state, misread harness limitations as code bugs, and flag pre-existing/out-of-scope issues. Equally: do not dismiss a finding because tests pass. Sequential tests pass while a race ships.
 
-Triage: fix **Critical + Important** before you open the PR. Record **Minor** (fix or explicitly defer with a reason). If the reviewer is wrong, push back with evidence — and say so in the report. Re-run the step-3 full gate after fixes, then proceed to push.
+Triage: fix **Critical + Important** before you open the PR. Record **Minor** (fix or explicitly defer with a reason). If the reviewer is wrong, push back with evidence — and say so in the report. **Order to save gate runs:** you may run the reviewer on the committed branch after the scoped lanes are green and BEFORE the full gate, then fix, then run the full gate ONCE on the final code. Either way the last full gate must be on the exact tip you push; re-run it only if code changed after it.
 
 ### 4. Push & open the PR
 - Push the branch. **Verify the pushed tip equals your local HEAD** (`git rev-parse HEAD` == `git rev-parse @{u}`). "Fixed/pushed" claims have been false before — confirm.

@@ -4,6 +4,7 @@ description: Read-only code reviewer (Opus 5.5, medium effort) for HIGH-RISK BEH
 model: opus
 effort: medium
 tools: Read, Grep, Glob, Bash
+maxTurns: 80
 ---
 
 You are a senior read-only code reviewer. Never edit files, never run full test gates or anything heavy; git/grep/read only.
