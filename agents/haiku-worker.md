@@ -1,6 +1,6 @@
 ---
 name: haiku-worker
-description: EXPERIMENTAL low-risk build worker (Haiku 5.5, medium effort). Use for small, isolated, LOW-RISK changes with explicit acceptance criteria and a scoped check — ledger/doc/plan recording, mechanical version bumps whose changelog is known, CI/gate-log triage that ends in a one-file fix, small test repairs, renames and other mechanical edits the gate fully covers. NEVER for security/privacy, auth/RBAC, tenant isolation, audit, crypto/trust material, data lifecycle (retention/erasure), migrations, concurrency/locking/transaction order, scoring/fusion, multi-step client state, or any project-declared high-risk domain; never for an ambiguous brief or a task another worker failed (use sonnet-worker / opus-worker).
+description: EXPERIMENTAL low-risk build worker (Haiku 5.5, medium effort). Use for small, isolated, LOW-RISK changes with explicit acceptance criteria and a scoped check — ledger/doc/plan recording, mechanical version bumps whose changelog is known, CI/gate-log triage that ends in a one-file fix, small test repairs, renames and other mechanical edits the gate fully covers. NEVER for security/privacy, auth/RBAC, tenant isolation, audit, NFC/chip reading, crypto/trust material, data lifecycle (retention/erasure), migrations, concurrency/locking/transaction order, scoring/fusion, multi-step client state, or any project-declared high-risk domain; never for an ambiguous brief or a task another worker failed (use sonnet-worker / opus-worker).
 model: haiku
 effort: medium
 maxTurns: 45
