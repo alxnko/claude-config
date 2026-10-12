@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Claude Code usage by role and by worktree/PR, from local transcripts.
 
-Usage: subagent-usage.py [PROJECT_DIR] [--since YYYY-MM-DD] [--prices prices.json]
+Usage: subagent-usage.py [PROJECT_DIR] [--since YYYY-MM-DD] [--until YYYY-MM-DD] [--prices prices.json]
 
 PROJECT_DIR defaults to the ~/.claude/projects entry for the current directory.
 Reports the MAIN session (orchestrator) and every subagent, grouped by model, by
@@ -20,6 +20,7 @@ import argparse, collections, datetime, glob, json, os, re, statistics
 ap = argparse.ArgumentParser()
 ap.add_argument("project_dir", nargs="?")
 ap.add_argument("--since", default=(datetime.date.today() - datetime.timedelta(days=7)).isoformat())
+ap.add_argument("--until", default="9999-12-31", help="exclusive end date YYYY-MM-DD")
 ap.add_argument("--prices")
 a = ap.parse_args()
 d = a.project_dir or os.path.expanduser("~/.claude/projects/" + os.getcwd().replace("/", "-").replace(".", "-"))
@@ -37,7 +38,7 @@ def records(path):
                 r = json.loads(line)
             except ValueError:
                 continue
-            if r.get("timestamp", "") >= a.since:
+            if a.since <= r.get("timestamp", "") < a.until:
                 yield r
 
 
@@ -131,7 +132,7 @@ def line(label, group):
     print(s)
 
 
-print(f"project: {d}\nsince:   {a.since}\nNOTE: processed tokens != cost != Max quota (see --prices)\n")
+print(f"project: {d}\nsince:   {a.since}  until: {a.until}\nNOTE: processed tokens != cost != Max quota (see --prices)\n")
 print("dispatches by subagent_type (main transcripts):")
 for k, v in dispatch.most_common():
     print(f"  {k:28} {v}")
