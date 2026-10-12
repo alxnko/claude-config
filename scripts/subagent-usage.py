@@ -3,7 +3,8 @@
 
 Usage: subagent-usage.py [PROJECT_DIR] [--since YYYY-MM-DD] [--until YYYY-MM-DD] [--prices prices.json]
 
-PROJECT_DIR defaults to the ~/.claude/projects entry for the current directory.
+PROJECT_DIR defaults to EVERY ~/.claude/projects dir for the current repo (main checkout under any
+path spelling + its worktree sessions); the report starts with that inventory.
 Reports the MAIN session (orchestrator) and every subagent, grouped by model, by
 role (agent type) and by worktree (the `.claude/worktrees/<name>` its prompt names,
 i.e. its branch/PR). Token categories are kept apart because they are priced
@@ -23,7 +24,23 @@ ap.add_argument("--since", default=(datetime.date.today() - datetime.timedelta(d
 ap.add_argument("--until", default="9999-12-31", help="exclusive end date YYYY-MM-DD")
 ap.add_argument("--prices")
 a = ap.parse_args()
-d = a.project_dir or os.path.expanduser("~/.claude/projects/" + os.getcwd().replace("/", "-").replace(".", "-"))
+def repo_dirs():
+    """Every ~/.claude/projects dir for the current repo: the main checkout under any path spelling
+    (e.g. a symlinked /home/x/home/x/...) AND its worktree sessions (<repo>--claude-worktrees-*).
+    Missing one once hid ~3/4 of a window's spend (2026-10-12), so the default is ALL of them."""
+    import subprocess
+    try:
+        top = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:
+        top = os.getcwd()
+    tail = "-".join(os.path.realpath(top).strip("/").split("/")[-3:]).replace(".", "-")
+    root = os.path.expanduser("~/.claude/projects")
+    return sorted(x for x in glob.glob(os.path.join(root, "*")) if os.path.isdir(x)
+                  and (x.endswith("-" + tail) or ("-" + tail + "--claude-worktrees-") in x))
+
+
+dirs = [a.project_dir] if a.project_dir else repo_dirs()
+d = ", ".join(dirs)
 since_ts = datetime.datetime.fromisoformat(a.since).timestamp()
 prices = json.load(open(a.prices)) if a.prices else {}
 WORKTREE = re.compile(r"\.claude/worktrees/([A-Za-z0-9._+-]+)")
@@ -91,7 +108,22 @@ class Agent:
 
 dispatch = collections.Counter()
 main = collections.defaultdict(Agent)  # model -> Agent (main sessions, all files)
-for f in glob.glob(os.path.join(d, "*.jsonl")):
+seen_sessions = set()
+inventory = []
+for dd in dirs:
+    mains = glob.glob(os.path.join(dd, "*.jsonl"))
+    subs = glob.glob(os.path.join(dd, "*", "subagents", "*.jsonl"))
+    inventory.append((dd, len(mains), len(subs)))
+main_files, dupes = [], 0
+for dd in dirs:
+    for f in glob.glob(os.path.join(dd, "*.jsonl")):
+        sid = os.path.basename(f)
+        if sid in seen_sessions:
+            dupes += 1
+            continue
+        seen_sessions.add(sid)
+        main_files.append(f)
+for f in main_files:
     for r in records(f):
         m = r.get("message") or {}
         content = m.get("content")
@@ -104,7 +136,7 @@ for f in glob.glob(os.path.join(d, "*.jsonl")):
             main[m["model"]].add(r)
 
 agents = []
-for f in glob.glob(os.path.join(d, "*", "subagents", "*.jsonl")):
+for f in [f for dd in dirs for f in glob.glob(os.path.join(dd, "*", "subagents", "*.jsonl"))]:
     ag = Agent()
     for r in records(f):
         ag.add(r)
@@ -132,7 +164,11 @@ def line(label, group):
     print(s)
 
 
-print(f"project: {d}\nsince:   {a.since}  until: {a.until}\nNOTE: processed tokens != cost != Max quota (see --prices)\n")
+print("transcript dirs (main sessions / subagent files):")
+for dd, nm, ns in inventory:
+    print(f"  {nm:4} / {ns:5}  {dd}")
+print(f"  {len(seen_sessions)} unique main sessions; {dupes} duplicate session files skipped\n")
+print(f"since:   {a.since}  until: {a.until}\nNOTE: processed tokens != cost != Max quota (see --prices)\n")
 print("dispatches by subagent_type (main transcripts):")
 for k, v in dispatch.most_common():
     print(f"  {k:28} {v}")
